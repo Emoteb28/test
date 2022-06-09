@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+        <div ref="words" data-words="{{ words|join(',') }}">
+        </div>
+    <div id="app">
+        <v-app v-cloak>
+            <v-main>
+                <div class="container--fluid" >
+                    <router-view></router-view>
+                </div>
+            </v-main>
+        </v-app>
+        </div>
+    </div>
+{% endblock %}

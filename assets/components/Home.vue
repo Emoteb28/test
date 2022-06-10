@@ -1,39 +1,37 @@
 <template>
   <div class="container--fluid">
-    <Menu />
+    <Menu/>
     <div class="container">
       <div class="row mt-3">
-
-        <div v-for="airport in airports" :key="airport.abbreviation">
-          <airport-card :airport="airport" />
+        <div v-for="airport in this.allAirport" :key="airport.id">
+          <airport-card :airport="airport"/>
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
 <script>
-import allAirports from './data/airports.js'
 import AirportCard from './AirportCard.vue'
 import Menu from './Menu.vue';
-import {mapState} from "vuex";
+import {mapGetters} from "vuex";
+
 export default {
   components: {
     AirportCard,
     Menu
   },
-  data :() => ({
-      message: "A list of words",
-    airports: []
+  data: () => ({
+    message: "A list of words",
+    // airports: ''
   }),
-  mounted(){
-    this.airports =  allAirports
+  mounted() {
+    // this.airports = this.allAirport
   },
   computed: {
-    ...mapState({
-      cart : state => state.a
-    }),
+    ...mapGetters([
+      "allAirport"
+    ])
   }
 }
 </script>

@@ -37,16 +37,16 @@
           <v-list-item-content>
             <v-list-item-title>Evan You</v-list-item-title>
           </v-list-item-content>
-<!--          @click="like"-->
-<!--          resetName-->
-<!--          @click="updateName('Marc')"-->
+          <!--          @click="like"-->
+          <!--          resetName-->
+          <!--          @click="updateName('Marc')"-->
           <v-row
               align="center"
               justify="end"
           >
             <v-icon class="mr-1"
                     v-bind:style="{ color: activeColor}"
-                    @click="change('ok')"
+                    @click="gotToPage()"
             >
               mdi-heart
             </v-icon>
@@ -87,15 +87,15 @@
         </v-card>
       </v-expand-transition>
     </v-card>
-<!--      {{ this.firstName}}-->
-<!--    {{this.fullName }}-->
+    <!--      {{ this.firstName}}-->
+    <!--    {{this.fullName }}-->
 
-<!--    {{ this.age }}-->
+    <!--    {{ this.age }}-->
   </div>
 </template>
 
 <script>
-import {mapActions, mapGetters, mapMutations, mapState} from "vuex";
+import {mapActions, mapMutations, mapState} from "vuex";
 
 export default {
   props: {
@@ -110,6 +110,11 @@ export default {
     share: 0,
   }),
   methods: {
+    gotToPage() {
+      this.$router.push({
+        path: `/detail/${this.airport.id}`
+      })
+    },
     like() {
       (this.activeColor === 'blue') ? this.activeColor = 'pink' : this.activeColor = 'blue'
     },
@@ -120,17 +125,17 @@ export default {
       // 'updateFirstName',
     ]),
     ...mapActions([
-        'addToFavorite',
-        'updateFirstName',
-        'resetName',
+      'addToFavorite',
+      'updateFirstName',
+      'resetName',
       'updateName'
     ]),
     // updateNameFin(name) {
     //   // this.updateName(name)
     //   this.$store.dispatch('updateName', name)
     // }
-    change(name){
-        this.$store.commit("changeName", name);
+    change(name) {
+      this.$store.commit("changeName", name);
     }
   },
   computed: {

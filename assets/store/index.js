@@ -1,17 +1,13 @@
 import Vuex from "vuex";
 import Vue from "vue"
 import airports from "../components/data/airports";
+// import {SET_NOTE} from "./mutations-types";
 
 Vue.use(Vuex);
 
 // let store = new Vuex.Store({
 export default new Vuex.Store({
     state: airports,
-    // id: 1,
-    // name: "Chelsea Shoes",
-    // price: 200,
-    // shortdesc: "Best Drip in the Market",
-    // url: "images/chelsea-shoes.png"
     mutations: {
         UPDATE_FIRSTNAME(state, payload) {
             state.firstName = payload
@@ -46,12 +42,14 @@ export default new Vuex.Store({
             commit('RESET_NAME', '')
         },
     },
-    // getters: {
-    //     fullName(state) {
-    //         return `${state.firstName} ${state.lastName}`
-    //     }
-    // },
-
+    getters: {
+        // fullName(state) {
+        //     return `${state.firstName} ${state.lastName}`
+        // },
+        allAirport(state) {
+            return state.catalogue
+        },
+    },
 });
 
 // global.store = store;
